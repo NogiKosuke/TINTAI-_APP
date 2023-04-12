@@ -1,0 +1,37 @@
+<h1>物件登録</h1>
+
+<%= form_with(model: @property, local: true) do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @property.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :rent %><br>
+    <%= f.text_field :rent %>
+  </div>
+  <div>
+    <%= f.label :adress %><br>
+    <%= f.text_field :adress %>
+  </div>
+  <div>
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div>
+    <%= f.label :remark %><br>
+    <%= f.text_area :remark %>
+  </div>
+    <%= f.submit "登録する" %>
+<% end %>
