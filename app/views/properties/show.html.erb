@@ -10,3 +10,14 @@
 <p>築年数：<%= @property.age %></p>
 <br>
 <p>備考：<%= @property.remark %></p>
+
+<% i = 1 %>
+<% @nearest_stations.each do |nearest_station| %>
+  <% if @property.nearest_stations.any? %>
+    <p>最寄駅<%= i %></p>
+    <% i += 1 %>
+    <p><%= nearest_station.train_line %></p>
+    <p><%= nearest_station.station %></p>
+    <p><%= nearest_station.closeness %></p>
+  <% end %>
+<% end %>

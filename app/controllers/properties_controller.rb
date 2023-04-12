@@ -5,10 +5,12 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    @nearest_stations = @property.nearest_stations
   end
 
   def new
     @property = Property.new
+    2.times { @property.nearest_stations.build }
   end
 
   def create
@@ -22,6 +24,7 @@ class PropertiesController < ApplicationController
 
   def edit
     @property = Property.find(params[:id])
+    @property.nearest_stations.build
   end
 
   def update
@@ -42,6 +45,20 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:name, :rent, :adress, :age, :remark)
+    params.require(:property).permit(
+                                      :name,
+                                      :rent,
+                                      :adress,
+                                      :age,
+                                      :remark,
+                                      nearest_stations_attributes: [
+                                        :train_line,
+                                        :station,
+                                        :closeness,
+                                        :property_id,
+                                        :id,
+                                        :_destroy,
+                                        ],
+                                    )
   end
 end
